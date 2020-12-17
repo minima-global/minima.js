@@ -1,0 +1,7 @@
+node_modules/
+
+# Output of 'npm pack'
+*.tgz
+
+# npm build output
+/dist
