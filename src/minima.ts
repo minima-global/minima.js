@@ -32,6 +32,181 @@ export interface Token {
   script?: string
 }
 
+export interface Status {
+  version: string;
+  time: string;
+  uptime: string;
+  conf: string;
+  host: string;
+  minimaport: number;
+  rpcport: number;
+  websocketport: number;
+  minidappserver: number;
+  automine: boolean;
+  root: string;
+  tip: string;
+  total: string;
+  lastblock: number;
+  lasttime: string;
+  cascade: string;
+  difficulty: string;
+  coindb: number;
+  txpowdb: number;
+  txpowfiles?: string;
+  txpowfolder?: string;
+  IBD?: string;
+  mempooltxn: number;
+  mempoolcoins: number;
+  chainspeed: number;
+  chainlength: number;
+  chainweight: string;
+  connections: number;
+}
+
+export interface History {
+	history: [{
+			txpow: {
+				txpowid: string,
+				isblock: boolean,
+				istransaction: boolean,
+				superblock: number,
+				size: number,
+				/** Header */ 
+				header: {
+					block: string,
+					blkdiff: string,
+					cascadelevels: number,
+					/** Superparents */
+					superparents: [{
+							difficulty: number,
+							count: number,
+							parent: string
+					}],
+					chainid: string,
+					parentchainid: string,
+					mmr: string,
+					total: string,
+					nonce: string
+					timesecs: string,
+					date: string
+				},
+			hasbody: boolean,
+			/** Body */
+			body: {
+				txndiff: string
+				txn: {
+					inputs: [{
+						coinid: string,
+						address: string,
+						amount: number,
+						tokenid: string,
+						floating: false,
+						remainder: false;
+					}],
+					outputs: [{
+						coinid: string,
+						address: string,
+						amount: string,
+						tokenid: string,
+						floating: boolean,
+						remainder: boolean
+					}],
+					state: [{port?: string, data?: string, keeper?: boolean}],
+					tokengen?: {
+						tokenid: string,
+						token: string,
+						description: string,
+						icon: string,
+						proof: string,
+						total: string,
+						script: string,
+						coinid: string,
+						totalamount: string,
+						scale: string,
+						scalefactor: string
+						},
+						linkhash: string
+				},
+				witness: {
+					signatures: [{
+						signature: string,
+						proof: {
+							data: string,
+							hashbits: number,
+							proofchain: [],
+							chainsha: string,
+							finalhash: string
+						}
+					}],
+					mmrproofs:[{
+						blocktime: string,
+						entry: string,
+						data: {
+							hashonly: boolean,
+							value: string,
+							finalhash: string,
+							spent: boolean,
+							coin: {
+								coinid: string,
+								address: string,
+								mxaddress: string,
+								amount: string,
+								tokenid: string,
+								floating: boolean,
+								remainder: boolean
+							}
+						},
+						inblock: string,
+						prevstate: []
+					}]
+					proof:{
+						data: string,
+						hashbits: number,
+						proofchain: [],
+						chainsha: string,
+						finalhash: string,
+					},
+					tokens: [],
+					scripts: [{
+							script: string,
+							proof: {
+									data: string,
+									hashbits: number,
+									proofchain: [],
+									chainsha: string,
+									finalhash: string
+							}
+					}]
+				},
+				burntxn: {
+					inputs: [],
+					outputs: [],
+					state: [],
+					linkhash: string
+				},
+				burntwitness: {
+						signatures: [],
+						mmrproofs: [],
+						tokens: [],
+						scripts: []
+				},
+				txnlist: [],
+				magic: {
+					prng: string,
+					maxtxpow: number,
+					maxtxn: number,
+					maxkissvm: string
+				}
+			}
+		},
+		values: [{
+				token: string,
+				name: any,
+				amount: string
+		}]
+	}]
+}
+
 interface Listen {
   port: string
   callback: Callback
