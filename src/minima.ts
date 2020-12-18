@@ -63,6 +63,11 @@ export interface Status {
   IBD?: string;
 }
 
+export interface Address {
+	script: string
+	hexaddress: string 
+	miniaddress: string
+}
 export interface Coin {
 	coinid: string
 	address: string
