@@ -32,6 +32,252 @@ export interface Token {
   script?: string
 }
 
+export interface Status {
+  version: string;
+  time: string;
+  uptime: string;
+  conf: string;
+  host: string;
+  minimaport: number;
+  rpcport: number;
+  websocketport: number;
+  minidappserver: number;
+  automine: boolean;
+  root: string;
+  tip: string;
+  total: string;
+  lastblock: number;
+  lasttime: string;
+  cascade: string;
+  difficulty: string;
+  coindb: number;
+  txpowdb: number;
+  mempooltxn: number;
+  mempoolcoins: number;
+  chainspeed: number;
+  chainlength: number;
+  chainweight: string;
+	connections: number;
+	txpowfiles?: string;
+  txpowfolder?: string;
+  IBD?: string;
+}
+
+export interface Address {
+	script: string
+	hexaddress: string 
+	miniaddress: string
+}
+export interface Coin {
+	coinid: string
+	address: string
+	mxaddress: string
+	amount: string
+	tokenid: string
+	floating: boolean
+	remainder: boolean
+}
+
+export interface MMRProof {
+	blocktime: string
+	entry: string
+	data: {
+		hashonly: boolean
+		value: string
+		finalhash: string
+		spent: boolean
+		coin: Coin
+	},
+	inblock: string,
+	prevstate: []
+}
+
+interface ProofSignatureWitness {
+	data: string
+	hashbits: number
+	proofchain: []
+	chainsha: string
+	finalhash: string
+}
+
+interface SignatureWitness {
+	signature: string
+	proof: ProofSignatureWitness
+}
+
+interface Script {
+	script: string
+	proof: Proof
+}
+
+interface Proof {
+	data: string
+	hashbits: number
+	proofchain: []
+	chainsha: string
+	finalhash: string
+}
+
+interface Witness {
+	signatures: SignatureWitness[]
+	mmrproofs: MMRProof[]
+	proof: Proof
+	tokens: []
+	scripts: Script[]
+}
+
+interface Magic {
+	prng: string
+	maxtxpow: number
+	maxtxn: number
+	maxkissvm: string
+}
+
+interface BurnWitness {
+	signatures: []
+	mmrproofs: []
+	tokens: []
+	scripts: []
+}
+
+interface BurnTxn {
+	inputs: []
+	outputs: []
+	state: []
+	linkhash: string
+}
+
+interface TransactionInput {
+	coinid: string
+	address: string
+	amount: number
+	tokenid: string
+	floating: boolean
+	remainder: boolean
+}
+
+interface TransactionOutput {
+	coinid: string
+	address: string
+	amount: string
+	tokenid: string
+	floating: boolean
+	remainder: boolean
+}
+
+interface Transaction {
+	inputs: TransactionInput[]
+	outputs: TransactionOutput[]
+	state: State[]
+	linkhash: string
+}
+
+interface TokenTransaction {
+	inputs: TransactionInput[]
+	outputs: TransactionOutput[]
+	state: State[]
+	tokengen: TokenGen[]
+	linkhash: string
+}
+
+interface TransactionBody {
+	txndiff: string
+	txn: Transaction,
+	witness: Witness,
+	burntxn: BurnTxn,
+	burntwitness: BurnWitness,
+	txnlist: [],
+	magic: Magic
+}
+
+interface TokenTransactionBody {
+	txndiff: string
+	Txn: TokenTransaction,
+	witness: Witness,
+	burntxn: BurnTxn,
+	burntwitness: BurnWitness,
+	txnlist: [],
+	magic: Magic
+}
+
+interface Superparents {
+	difficulty: number,
+	count: number,
+	parent: string
+}
+
+interface TransactionHeader {
+	block: string
+	blkdiff: string
+	cascadelevels: number
+	superparents: Superparents[]
+	chainid: string
+	parentchainid: string
+	mmr: string
+	total: string
+	nonce: string
+	timesecs: string
+	date: string
+}
+
+interface Txpow {
+	txpowid: string,
+	isblock: boolean,
+	istransaction: boolean,
+	superblock: number,
+	size: number,
+	header: TransactionHeader,
+	hasbody: boolean,
+	body: TransactionBody
+}
+
+interface TokenTxpow {
+	txpowid: string,
+	isblock: boolean,
+	istransaction: boolean,
+	superblock: number,
+	size: number,
+	header: TransactionHeader,
+	hasbody: boolean,
+	body: TokenTransactionBody
+}
+
+interface Value {
+	token: string
+	name: any
+	amount: string
+}
+
+interface ValueTransferTxn {
+	history: [{
+			txpow: Txpow,
+			values: Value[]
+	}]
+}
+
+interface TokenGen {
+	tokenid: string
+	token: string
+	description: string
+	icon: string
+	proof: string
+	total: string
+	script: string
+	coinid: string
+	totalamount: string
+	scale: string
+	scalefactor: string
+}
+
+interface TokenCreatorTxn {
+	history: [{
+			txpow: TokenTxpow
+			values: Value[]
+	}]
+}
+
+export declare type History = ValueTransferTxn & TokenCreatorTxn;
+
 interface Listen {
   port: string
   callback: Callback
@@ -45,7 +291,8 @@ interface Response {
 
 interface State {
   port: string
-  data: string
+	data: string
+	keeper: string
 }
 
 type Callback = (jsonresp: any) => void
