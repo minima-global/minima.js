@@ -63,57 +63,64 @@ export interface Status {
   IBD?: string;
 }
 
-interface Witness {
-	signatures: [{
-		signature: string,
-		proof: {
-			data: string,
-			hashbits: number,
-			proofchain: [],
-			chainsha: string,
-			finalhash: string
-		}
-	}],
-	mmrproofs:[{
-		blocktime: string,
-		entry: string,
-		data: {
-			hashonly: boolean,
-			value: string,
-			finalhash: string,
-			spent: boolean,
-			coin: {
-				coinid: string,
-				address: string,
-				mxaddress: string,
-				amount: string,
-				tokenid: string,
-				floating: boolean,
-				remainder: boolean
-			}
-		},
-		inblock: string,
-		prevstate: []
-	}]
-	proof:{
-		data: string,
-		hashbits: number,
-		proofchain: [],
-		chainsha: string,
-		finalhash: string,
-	},
-	tokens: [],
-	scripts: [{
-			script: string,
-			proof: {
-					data: string,
-					hashbits: number,
-					proofchain: [],
-					chainsha: string,
-					finalhash: string
-			}
-	}]
+export interface Coin {
+	coinid: string
+	address: string
+	mxaddress: string
+	amount: string
+	tokenid: string
+	floating: boolean
+	remainder: boolean
 }
+
+export interface MMRProof {
+	blocktime: string
+	entry: string
+	data: {
+		hashonly: boolean
+		value: string
+		finalhash: string
+		spent: boolean
+		coin: Coin
+	},
+	inblock: string,
+	prevstate: []
+}
+
+interface ProofSignatureWitness {
+	data: string
+	hashbits: number
+	proofchain: []
+	chainsha: string
+	finalhash: string
+}
+
+interface SignatureWitness {
+	signature: string
+	proof: ProofSignatureWitness
+}
+
+interface Script {
+	script: string
+	proof: Proof
+}
+
+interface Proof {
+	data: string
+	hashbits: number
+	proofchain: []
+	chainsha: string
+	finalhash: string
+}
+
+interface Witness {
+	signatures: SignatureWitness[]
+	mmrproofs: MMRProof[]
+	proof: Proof
+	tokens: []
+	scripts: Script[]
+}
+
 interface Magic {
 	prng: string
 	maxtxpow: number
@@ -135,16 +142,16 @@ interface BurnTxn {
 	linkhash: string
 }
 
-interface Input {
+interface TransactionInput {
 	coinid: string
 	address: string
 	amount: number
 	tokenid: string
-	floating: false
-	remainder: false
+	floating: boolean
+	remainder: boolean
 }
 
-interface Output {
+interface TransactionOutput {
 	coinid: string
 	address: string
 	amount: string
@@ -153,24 +160,24 @@ interface Output {
 	remainder: boolean
 }
 
-interface Txn {
-	inputs: Input[]
-	outputs: Output[]
+interface Transaction {
+	inputs: TransactionInput[]
+	outputs: TransactionOutput[]
 	state: State[]
 	linkhash: string
 }
 
-interface Txn_tkn {
-	inputs: Input[]
-	outputs: Output[]
+interface TokenTransaction {
+	inputs: TransactionInput[]
+	outputs: TransactionOutput[]
 	state: State[]
 	tokengen: TokenGen[]
 	linkhash: string
 }
 
-interface Body {
+interface TransactionBody {
 	txndiff: string
-	txn: Txn,
+	txn: Transaction,
 	witness: Witness,
 	burntxn: BurnTxn,
 	burntwitness: BurnWitness,
@@ -178,9 +185,9 @@ interface Body {
 	magic: Magic
 }
 
-interface Body_tkn {
+interface TokenTransactionBody {
 	txndiff: string
-	txn: Txn_tkn,
+	Txn: TokenTransaction,
 	witness: Witness,
 	burntxn: BurnTxn,
 	burntwitness: BurnWitness,
@@ -194,7 +201,7 @@ interface Superparents {
 	parent: string
 }
 
-interface Header {
+interface TransactionHeader {
 	block: string
 	blkdiff: string
 	cascadelevels: number
@@ -214,20 +221,20 @@ interface Txpow {
 	istransaction: boolean,
 	superblock: number,
 	size: number,
-	header: Header,
+	header: TransactionHeader,
 	hasbody: boolean,
-	body: Body
+	body: TransactionBody
 }
 
-interface Txpow_tkn {
+interface TokenTxpow {
 	txpowid: string,
 	isblock: boolean,
 	istransaction: boolean,
 	superblock: number,
 	size: number,
-	header: Header,
+	header: TransactionHeader,
 	hasbody: boolean,
-	body: Body_tkn
+	body: TokenTransactionBody
 }
 
 interface Value {
@@ -259,7 +266,7 @@ interface TokenGen {
 
 interface TokenCreatorTxn {
 	history: [{
-			txpow: Txpow_tkn
+			txpow: TokenTxpow
 			values: Value[]
 	}]
 }
