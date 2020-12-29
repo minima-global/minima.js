@@ -18,7 +18,7 @@
 # -- Project information -----------------------------------------------------
 
 project = 'minima.js'
-copyright = '2020, Steve Huckle'
+copyright = '2020, Minima Global'
 author = 'Steve Huckle'
 
 
