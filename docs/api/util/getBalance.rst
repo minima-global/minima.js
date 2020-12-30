@@ -1,0 +1,5 @@
+###############
+util.getBalance
+###############
+
+.. _apiUtilGetBalance:

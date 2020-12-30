@@ -1,0 +1,5 @@
+##############
+minidapps.send
+##############
+
+.. _apiMiniDappsSend:
