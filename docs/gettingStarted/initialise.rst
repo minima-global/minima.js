@@ -2,11 +2,10 @@
 Initialising Minima
 ###################
 
+.. _gettingStartedInitialise:
 
-.. _initialise minima.js:
-
-Initialise Example
-==================
+Example
+=======
 
 ::
 

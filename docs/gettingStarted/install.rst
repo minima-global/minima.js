@@ -2,7 +2,7 @@
 Install minima.js
 #################
 
-.. _install minima.js:
+.. _gettingStartedInstall:
 
 Install
 =======

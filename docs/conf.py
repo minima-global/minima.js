@@ -20,7 +20,7 @@
 project = 'minima.js'
 copyright = '2020, Minima Global'
 author = 'Steve Huckle'
-
+master_doc = 'index'
 
 # -- General configuration ---------------------------------------------------
 

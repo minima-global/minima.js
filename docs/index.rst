@@ -17,12 +17,13 @@ Contents
 
 .. toctree::
    :maxdepth: 2
-   :caption: Basics:
+   :caption: Getting Started:
 
-   install.rst
+   gettingStarted/install.rst
+   gettingStarted/initialise.rst
 
 .. toctree::
    :maxdepth: 2
-   :caption: API Description:
+   :caption: API:
 
-   initialise.rst
+   api/init.rst
