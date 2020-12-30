@@ -24,64 +24,6 @@ Contents
 
 .. toctree::
    :maxdepth: 2
-   :caption: Top-level API:
+   :caption: API:
 
-   api/init.rst
-   api/notify.rst
-   api/log.rst
-   api/cmd.rst
-   api/sql.rst
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Utility API:
-
-   api/util/getBalance.rst
-   api/util/getStateVariable.rst
-   api/util/checkAllResponses.rst
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Form API:
-
-   api/form/getParams.rst
-   api/form/params.rst
-
-.. toctree::
-   :maxdepth: 2
-   :caption: File API:
-
-   api/file/saveHEX.rst
-   api/file/move.rst
-   api/file/copy.rst
-   api/file/save.rst
-   api/file/delete.rst
-   api/file/list.rst
-   api/file/loadHEX.rst
-   api/file/load.rst
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Net API:
-
-   api/net/POST.rst
-   api/net/start.rst
-   api/net/disconnect.rst
-   api/net/onOutbound.rst
-   api/net/GET.rst
-   api/net/connect.rst
-   api/net/onInbound.rst
-   api/net/stats.rst
-   api/net/broadcast.rst
-   api/net/stop.rst
-   api/net/send.rst
-   api/net/info.rst
-
-.. toctree::
-   :maxdepth: 2
-   :caption: MiniDapps API:
-
-   api/minidapps/listen.rst
-   api/minidapps/list.rst
-   api/minidapps/send.rst
-   api/minidapps/reply.rst
+   api/api.rst
