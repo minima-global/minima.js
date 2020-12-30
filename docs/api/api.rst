@@ -2,7 +2,7 @@
 Minima API Functions
 ####################
 
-The Minima API is used to create MiniDapps.
+The Minima API is used to drive MiniDapps.
 
 .. toctree::
    :maxdepth: 2
