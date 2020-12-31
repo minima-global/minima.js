@@ -10,10 +10,16 @@ If you do not have sphinx installed, then:
 pip install sphinx
 ```
 
-Once sphinx installed, generate the docs:
+You will also need the sphinx read-the-docs theme:
+
+```
+pip install sphinx-rtd-theme
+```
+
+Now you can generate the docs:
 
 ```
 make html
 ```
 
-That will create a static documentation website in _./build/html_.
+That will create a static documentation website in _./build/html_, which you can load into any browser.
