@@ -1,0 +1,5 @@
+###############
+BurnTransaction
+###############
+
+.. _interfacesBurnTransaction:

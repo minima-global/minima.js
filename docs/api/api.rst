@@ -1,6 +1,6 @@
-####################
-Minima API Functions
-####################
+##########
+Minima API
+##########
 
 The Minima API is used to drive MiniDapps.
 

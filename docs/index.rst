@@ -6,9 +6,9 @@ minima.js
     :alt: Minima logo
     :align: center
 
-Minima is a cryptocurrency designed to be ultra-compact. Designed to remain Totally Decentralised. Designed to have no rulers. There are no miners and no ever-growing database. A simple yet powerful scripting language, Cascading Proof Chain, adaptive block scaling, and an innovative Proof of Work (PoW) backed user-centric blockchain algorithm that uses both on-chain and off-chain traffic for security. All Quantum Secure Cryptography. Small enough to run efficiently on your mobile phone. Everyone runs a complete node. Forever.
+Minima is a wholly decentralised, mobile-first, quantum secure cryptocurrency. There are no miners and no database that grows indefinitely. It features a simple yet powerful scripting language, adaptive block scaling, and an innovative proof of work consensus protocol featuring a cascading proof blockchain secured by a user-centric algorithm that uses both on-chain and off-chain traffic. Everyone runs a complete node. Forever.
 
-Minima.js is the means by which it is is possible to build distributed applications that access the Minima blockchain.
+Minima.js makes it possible to access the Minima blockchain and build fully-featured distributed applications that take advantage of Minima's endless possibilities.
 
 Contents
 ========
@@ -27,3 +27,9 @@ Contents
    :caption: API:
 
    api/api.rst
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Typescript:
+
+   typescript/typescript.rst
