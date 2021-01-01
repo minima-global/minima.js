@@ -1,0 +1,5 @@
+#####################
+SignatureWitnessProof
+#####################
+
+.. _interfacesSignatureWitnessProof:

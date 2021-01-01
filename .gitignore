@@ -5,3 +5,7 @@ node_modules/
 
 # npm build output
 /dist
+
+# docs
+docs/_build
+docs/_static

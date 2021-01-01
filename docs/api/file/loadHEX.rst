@@ -1,0 +1,5 @@
+############
+file.loadHex
+############
+
+.. _apiFileLoadHex:
