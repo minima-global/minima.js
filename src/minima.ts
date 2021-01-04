@@ -6,15 +6,6 @@
 * @spartacusrex
 */
 
-/*
-info = { "txpow" : jmsg.txpow };
-info = { "txpow" : jmsg.txpow, "relevant" : jmsg.relevant };
-info = { "txpow" : jmsg.txpow };
-info = { "balance" : jmsg.balance };
-info = { "transaction" : jmsg.transaction };
-info = { "transaction" : jmsg.transaction };
-*/
-
 export interface Token {
   tokenid: string
   token: string
@@ -32,7 +23,7 @@ export interface Token {
   script?: string
 }
 
-export interface Status {
+export interface NetworkStatus {
   version: string;
   time: string;
   uptime: string;
@@ -68,6 +59,7 @@ export interface Address {
 	hexaddress: string 
 	miniaddress: string
 }
+
 export interface Coin {
 	coinid: string
 	address: string
@@ -92,7 +84,7 @@ export interface MMRProof {
 	prevstate: []
 }
 
-interface ProofSignatureWitness {
+interface SignatureWitnessProof {
 	data: string
 	hashbits: number
 	proofchain: []
@@ -102,7 +94,7 @@ interface ProofSignatureWitness {
 
 interface SignatureWitness {
 	signature: string
-	proof: ProofSignatureWitness
+	proof: SignatureWitnessProof
 }
 
 interface Script {
@@ -133,14 +125,14 @@ interface Magic {
 	maxkissvm: string
 }
 
-interface BurnWitness {
+interface WitnessBurn {
 	signatures: []
 	mmrproofs: []
 	tokens: []
 	scripts: []
 }
 
-interface BurnTxn {
+interface TransactionBurn {
 	inputs: []
 	outputs: []
 	state: []
@@ -170,37 +162,20 @@ interface Transaction {
 	outputs: TransactionOutput[]
 	state: State[]
 	linkhash: string
-}
-
-interface TokenTransaction {
-	inputs: TransactionInput[]
-	outputs: TransactionOutput[]
-	state: State[]
-	tokengen: TokenGen[]
-	linkhash: string
+	tokengen?: TokenGenerator
 }
 
 interface TransactionBody {
 	txndiff: string
 	txn: Transaction,
 	witness: Witness,
-	burntxn: BurnTxn,
-	burntwitness: BurnWitness,
+	burntxn: TransactionBurn,
+	burnwitness: WitnessBurn,
 	txnlist: [],
 	magic: Magic
 }
 
-interface TokenTransactionBody {
-	txndiff: string
-	Txn: TokenTransaction,
-	witness: Witness,
-	burntxn: BurnTxn,
-	burntwitness: BurnWitness,
-	txnlist: [],
-	magic: Magic
-}
-
-interface Superparents {
+interface SuperParents {
 	difficulty: number,
 	count: number,
 	parent: string
@@ -210,7 +185,7 @@ interface TransactionHeader {
 	block: string
 	blkdiff: string
 	cascadelevels: number
-	superparents: Superparents[]
+	superparents: SuperParents[]
 	chainid: string
 	parentchainid: string
 	mmr: string
@@ -231,31 +206,13 @@ interface Txpow {
 	body: TransactionBody
 }
 
-interface TokenTxpow {
-	txpowid: string,
-	isblock: boolean,
-	istransaction: boolean,
-	superblock: number,
-	size: number,
-	header: TransactionHeader,
-	hasbody: boolean,
-	body: TokenTransactionBody
-}
-
 interface Value {
 	token: string
 	name: any
 	amount: string
 }
 
-interface ValueTransferTxn {
-	history: [{
-			txpow: Txpow,
-			values: Value[]
-	}]
-}
-
-interface TokenGen {
+interface TokenGenerator {
 	tokenid: string
 	token: string
 	description: string
@@ -269,21 +226,27 @@ interface TokenGen {
 	scalefactor: string
 }
 
-interface TokenCreatorTxn {
-	history: [{
-			txpow: TokenTxpow
-			values: Value[]
-	}]
+interface Transaction {
+	txpow: Txpow
+	values: Value[]
 }
 
-export declare type History = ValueTransferTxn & TokenCreatorTxn;
+interface HistoryTransaction {
+	history?: Transaction[]
+}
+
+interface HistoryResponse {
+	response?: HistoryTransaction
+}
+
+export type History = CallBackResponse & HistoryResponse 
 
 interface Listen {
   port: string
   callback: Callback
 }
 
-interface Response {
+interface CallBackResponse {
   status: boolean
   message: string
   minifunc: string
@@ -661,7 +624,7 @@ const Minima = {
 				return "0";
 			},
 
-			checkAllResponses : function (responses: Response[]): boolean {
+			checkAllResponses : function (responses: CallBackResponse[]): boolean {
 				const len = responses.length;
 				for(let i=0;i<len;i++) {
 					if (responses[i].status != true) {
