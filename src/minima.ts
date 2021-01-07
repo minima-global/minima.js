@@ -258,7 +258,7 @@ interface State {
 	keeper: string
 }
 
-type Callback = (jsonresp: any) => void
+type Callback = (jsonresp: unknown) => void
 
 /**
  * The MAIN Minima Callback function
@@ -379,7 +379,7 @@ const Minima = {
 
 		//Any Parameters..
 		const paramstring = Minima.webhost+"/params";
-		httpGetAsync(paramstring, function (jsonresp: any) {
+		httpGetAsync(paramstring, function (jsonresp: unknown) {
 			//Set it..
 			MINIMA_PARAMS = jsonresp;
 		});
@@ -652,10 +652,9 @@ const Minima = {
 
 }
 
-/**
- * POST the RPC call - can be cmd/sql/file/net
- */
-function MinimaRPC(type: string, data: string, callback: (jsonresp: any) => void = () => {}): void {
+type RPCType = "cmd" | "sql" | "file" | "net";
+
+function MinimaRPC(type: RPCType, data: string, callback: Callback = () => {}): void {
 	//And now fire off a call saving it
 	httpPostAsync(Minima.rpchost+"/"+type+"/"+Minima.minidappid, encodeURIComponent(data), callback);
 }
@@ -850,7 +849,7 @@ function httpPostAsync(theUrl: string, params: string, callback: Callback): void
  * @param callback
  * @returns
  */
-function httpGetAsync(theUrl: string, callback: (jsonresp: any) => void, logenabled: boolean = false): void {
+function httpGetAsync(theUrl: string, callback: Callback, logenabled: boolean = false): void {
 		const xmlHttp = new XMLHttpRequest();
 		xmlHttp.onreadystatechange = function () {
 				if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
