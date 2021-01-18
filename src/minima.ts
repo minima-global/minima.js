@@ -208,7 +208,7 @@ export interface CompleteTransaction {
 	values: Value[];
 }
 interface HistoryTransaction {
-	history?: Transaction[];
+	history?: CompleteTransaction[];
 }
 interface HistoryResponse {
 	response?: HistoryTransaction;
