@@ -172,7 +172,7 @@ interface TransactionHeader {
 	mmr: string;
 	total: string;
 	nonce: string;
-	timesecs: string;
+	timesecs: number;
 	date: string;
 }
 interface Txpow {
@@ -210,10 +210,9 @@ export interface CompleteTransaction {
 interface HistoryTransaction {
 	history?: CompleteTransaction[];
 }
-interface HistoryResponse {
+export interface History {
 	response?: HistoryTransaction;
 }
-export declare type History = CallBackResponse & HistoryResponse;
 interface CallBackResponse {
 	status: boolean;
 	message: string;
