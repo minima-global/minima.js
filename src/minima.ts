@@ -111,7 +111,7 @@ interface Magic {
 	prng: string;
 	maxtxpow: number;
 	maxtxn: number;
-	maxkissvm: string;
+	maxkissvm: number;
 }
 interface WitnessBurn {
 	signatures: [];
@@ -128,18 +128,18 @@ interface TransactionBurn {
 interface TransactionInput {
 	coinid: string;
 	address: string;
-	amount: number;
+	mxaddress: string;
+	amount: string;
 	tokenid: string;
 	floating: boolean;
-	remainder: boolean;
 }
 interface TransactionOutput {
 	coinid: string;
 	address: string;
+	mxaddress: string;
 	amount: string;
 	tokenid: string;
 	floating: boolean;
-	remainder: boolean;
 }
 interface Transaction {
 	inputs: TransactionInput[];
@@ -207,11 +207,8 @@ export interface CompleteTransaction {
 	txpow: Txpow;
 	values: Value[];
 }
-interface HistoryTransaction {
-	history?: CompleteTransaction[];
-}
 export interface History {
-	response?: HistoryTransaction;
+ history: CompleteTransaction[];
 }
 interface Listen {
   port: string
