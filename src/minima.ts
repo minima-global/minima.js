@@ -103,7 +103,6 @@ interface Proof {
 interface Witness {
 	signatures: SignatureWitness[];
 	mmrproofs: MMRProof[];
-	proof: Proof;
 	tokens: [];
 	scripts: Script[];
 }
@@ -171,8 +170,9 @@ interface TransactionHeader {
 	parentchainid: string;
 	mmr: string;
 	total: string;
+	mmrpeaks: string;
 	nonce: string;
-	timesecs: number;
+	timemilli: string;
 	date: string;
 }
 interface Txpow {
