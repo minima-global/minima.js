@@ -12,6 +12,7 @@ export interface Token {
 	sendable: string;
 	unconfirmed: string;
 	confirmed: string;
+	decimals: string;
 	mempool: string;
 	coinid?: string;
 	totalamount?: string;
@@ -39,8 +40,8 @@ export interface NetworkStatus {
 	lasttime: string;
 	cascade: string;
 	difficulty: string;
-	coindb: number;
 	txpowdb: number;
+	ram: string;
 	mempooltxn: number;
 	mempoolcoins: number;
 	chainspeed: number;
@@ -63,7 +64,7 @@ export interface Coin {
 	amount: string;
 	tokenid: string;
 	floating: boolean;
-	remainder: boolean;
+	storestate: boolean
 }
 export interface MMRProof {
 	blocktime: string;
@@ -103,7 +104,6 @@ interface Proof {
 interface Witness {
 	signatures: SignatureWitness[];
 	mmrproofs: MMRProof[];
-	proof: Proof;
 	tokens: [];
 	scripts: Script[];
 }
@@ -132,6 +132,10 @@ interface TransactionInput {
 	amount: string;
 	tokenid: string;
 	floating: boolean;
+<<<<<<< HEAD
+=======
+	storestate: boolean;
+>>>>>>> development
 }
 interface TransactionOutput {
 	coinid: string;
@@ -140,6 +144,10 @@ interface TransactionOutput {
 	amount: string;
 	tokenid: string;
 	floating: boolean;
+<<<<<<< HEAD
+=======
+	storestate: boolean;
+>>>>>>> development
 }
 interface Transaction {
 	inputs: TransactionInput[];
@@ -171,8 +179,9 @@ interface TransactionHeader {
 	parentchainid: string;
 	mmr: string;
 	total: string;
+	mmrpeaks: string;
 	nonce: string;
-	timesecs: number;
+	timemilli: string;
 	date: string;
 }
 interface Txpow {
@@ -197,11 +206,11 @@ interface TokenGenerator {
 	icon: string;
 	proof: string;
 	total: string;
+	decimals: string;
 	script: string;
 	coinid: string;
 	totalamount: string;
 	scale: string;
-	scalefactor: string;
 }
 export interface CompleteTransaction {
 	txpow: Txpow;
