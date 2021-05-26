@@ -643,7 +643,11 @@ function httpPostAsync(theUrl, params, callback){
 
         	//Send it to the callback function..
         	if(callback){
-        		callback(JSON.parse(xmlHttp.responseText));
+						try {
+							callback(JSON.parse(xmlHttp.responseText));
+						} catch (err) {
+							Minima.notify(err);
+						}
         	}
         }
     }
