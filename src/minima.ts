@@ -132,10 +132,7 @@ interface TransactionInput {
 	amount: string;
 	tokenid: string;
 	floating: boolean;
-<<<<<<< HEAD
-=======
 	storestate: boolean;
->>>>>>> development
 }
 interface TransactionOutput {
 	coinid: string;
@@ -144,10 +141,7 @@ interface TransactionOutput {
 	amount: string;
 	tokenid: string;
 	floating: boolean;
-<<<<<<< HEAD
-=======
 	storestate: boolean;
->>>>>>> development
 }
 interface Transaction {
 	inputs: TransactionInput[];
