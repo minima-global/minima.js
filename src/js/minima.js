@@ -646,7 +646,7 @@ function httpPostAsync(theUrl, params, callback){
 						try {
 							callback(JSON.parse(xmlHttp.responseText));
 						} catch (err) {
-							Minima.notify(err);
+							Minima.notify(err, '#BEB25B');
 						}
         	}
         }

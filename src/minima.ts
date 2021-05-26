@@ -387,7 +387,7 @@ const Minima = {
 	/**
 	 * Notify the user with a Pop up message
 	 */
-	notify : function (message: string, bgcolor: string): void {
+	notify : function (message: string, bgcolor?: string): void {
 		//Log it..
 		Minima.log("Notify : "+message);
 
@@ -807,7 +807,11 @@ function httpPostAsync(theUrl: string, params: string, callback: Callback): void
 
 				//Send it to the callback function..
 				if (callback) {
-					callback(JSON.parse(xmlHttp.responseText));
+					try {
+						callback(JSON.parse(xmlHttp.responseText));
+					} catch (err) {
+						Minima.notify(err, '#BEB25B');
+					}
 				}
 			}
 	}
@@ -849,7 +853,7 @@ function httpGetAsync(theUrl: string, callback: (jsonresp: any) => void, logenab
 /**
  * Notifications
  */
-function MinimaCreateNotification(text: string, bgcolor: string = "#bbbbbb"): void {
+function MinimaCreateNotification(text: string, bgcolor?: string): void {
 	//First add the total overlay div
 	const notifydiv = document.createElement('div');
 
