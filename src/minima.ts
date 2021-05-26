@@ -213,6 +213,7 @@ export interface CompleteTransaction {
 export interface History {
  history: CompleteTransaction[];
 }
+
 interface Listen {
   port: string
   callback: Callback
