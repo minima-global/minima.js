@@ -241,9 +241,9 @@ export interface SqlCallBackResponse {
 	db: string;
 	status: boolean;
 	sql: string;
-	response?: SqlResponse;
 	message: string;
 	minifunc: string;
+	response?: SqlResponse;
 }
 interface State {
   port: string
