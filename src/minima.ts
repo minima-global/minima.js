@@ -79,6 +79,12 @@ export interface MMRProof {
 	inblock: string;
 	prevstate: [];
 }
+export interface PublicKey {
+	bits: number;
+  uses: string;
+	allowed: string;
+	publickey: string;
+}
 interface SignatureWitnessProof {
 	data: string;
 	hashbits: number;
@@ -224,7 +230,21 @@ interface CallBackResponse {
   message: string
   minifunc: string
 }
-
+export interface SqlResponse {
+	count: number;
+	results: boolean;
+	rows: any[];
+	sql: string;
+	status: boolean;
+}
+export interface SqlCallBackResponse {
+	db: string;
+	status: boolean;
+	sql: string;
+	response?: SqlResponse;
+	message: string;
+	minifunc: string;
+}
 interface State {
   port: string
 	data: string
@@ -597,7 +617,7 @@ const Minima = {
 				return "0";
 			},
 
-			checkAllResponses : function (responses: CallBackResponse[]): boolean {
+			checkAllResponses : function (responses: CallBackResponse[] | SqlCallBackResponse[]): boolean {
 				const len = responses.length;
 				for(let i=0;i<len;i++) {
 					if (responses[i].status != true) {
