@@ -140,7 +140,7 @@ interface TransactionInput {
 	floating: boolean;
 	storestate: boolean;
 }
-interface TransactionOutput {
+export interface TransactionOutput {
 	coinid: string;
 	address: string;
 	mxaddress: string;

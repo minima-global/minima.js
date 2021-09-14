@@ -1,6 +1,6 @@
 {
   "name": "minima",
-  "version": "0.96.24",
+  "version": "0.96.25",
   "description": "Access the Minima blockchain",
   "main": "dist/minima.js",
   "scripts": {
